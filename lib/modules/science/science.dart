@@ -1,21 +1,32 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/layout/cubit/cubit.dart';
+import 'package:news_app/layout/cubit/stats.dart';
+import 'package:news_app/shared/components/components.dart';
 
 class ScienceScreen extends StatelessWidget {
   const ScienceScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        "Science Screen",
-        style: TextStyle(
-          fontSize: 35.0,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
+    return BlocConsumer<NewsCubit, NewsState>(
+      listener: ((context, state) {}),
+      builder: (context, state) {
+        var list = NewsCubit.get(context).science;
+        return ConditionalBuilder(
+          condition: list.isNotEmpty,
+          builder: (context) => ListView.separated(
+            itemBuilder: (BuildContext context, int index) =>
+                BuildArticalItem(list[index], context),
+            separatorBuilder: (context, index) => Container(
+                height: 1.0, width: double.infinity, color: Colors.grey[200]),
+            itemCount: list.length,
+          ),
+          fallback: (context) =>
+              const Center(child: CircularProgressIndicator()),
+        );
+      },
     );
-    ;
   }
 }
