@@ -28,10 +28,10 @@ class News_Layout extends StatelessWidget {
               ],
             ),
             body: cubit.screen[cubit.currentindex],
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {},
-              child: const Icon(Icons.add),
-            ),
+            // floatingActionButton: FloatingActionButton(
+            //   onPressed: () {},
+            //   child: const Icon(Icons.add),
+            // ),
             bottomNavigationBar: BottomNavigationBar(
               items: cubit.bottomBarItem,
               currentIndex: cubit.currentindex,

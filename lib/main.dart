@@ -2,34 +2,51 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/layout/cubit/cubit.dart';
-import 'package:news_app/layout/cubit/stats.dart';
-import 'package:news_app/layout/news_layout.dart';
+import 'package:news_app/shared/networke/local/cache_helper.dart';
 import 'package:news_app/shared/networke/remote/dio_helper.dart';
 
-void main() {
-  runApp(const MyApp());
+import 'layout/cubit/stats.dart';
+import 'layout/news_layout.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   DioHelper.init();
+  CacheHelper.init();
+  bool? isDark = CacheHelper.getBoolean(key: 'isDark');
+  BlocOverrides.runZoned(() => runApp(
+        MyApp(isDark != null),
+      ));
+  // runApp(MyApp(isDark ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final bool isDark;
+  const MyApp(this.isDark, {Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => NewsCubit(),
+      create: (context) => NewsCubit()..changeTheme(fromShared: isDark),
       child: BlocConsumer<NewsCubit, NewsState>(
         listener: ((context, state) {}),
         builder: (context, state) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
+              textTheme: const TextTheme(
+                bodyText1: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 18.0,
+                ),
+              ),
               primaryColor: Colors.deepOrange,
               floatingActionButtonTheme: const FloatingActionButtonThemeData(
                   backgroundColor: Colors.deepOrange),
               scaffoldBackgroundColor: Colors.white,
               appBarTheme: const AppBarTheme(
+                titleSpacing: 15.0,
                 iconTheme: IconThemeData(color: Colors.black),
                 titleTextStyle: TextStyle(
                     color: Colors.black,
@@ -54,6 +71,7 @@ class MyApp extends StatelessWidget {
                   backgroundColor: Colors.deepOrange),
               scaffoldBackgroundColor: Colors.black,
               appBarTheme: const AppBarTheme(
+                titleSpacing: 15.0,
                 iconTheme: IconThemeData(color: Colors.white),
                 titleTextStyle: TextStyle(
                     color: Colors.white,
