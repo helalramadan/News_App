@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/modules/search/search.dart';
 
 import 'cubit/cubit.dart';
 import 'cubit/stats.dart';
@@ -19,7 +20,14 @@ class News_Layout extends StatelessWidget {
             appBar: AppBar(
               title: const Text("News App"),
               actions: [
-                IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+                IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SearchScrren()));
+                    },
+                    icon: const Icon(Icons.search)),
                 IconButton(
                     onPressed: () {
                       cubit.changeTheme();
