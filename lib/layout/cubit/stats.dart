@@ -24,7 +24,6 @@ class ScienceGetDataErrorState extends NewsState {
   ScienceGetDataErrorState(this.error);
 }
 
-class ChangeThemState extends NewsState {}
 
 class SportsLoadingState extends NewsState {}
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_app/layout/cubit/cubittheme.dart';
 import 'package:news_app/modules/search/search.dart';
 
 import 'cubit/cubit.dart';
@@ -30,7 +31,7 @@ class News_Layout extends StatelessWidget {
                     icon: const Icon(Icons.search)),
                 IconButton(
                     onPressed: () {
-                      cubit.changeTheme();
+                      ThemeCubit.get(context).changeTheme();
                     },
                     icon: const Icon(Icons.brightness_4_outlined)),
               ],

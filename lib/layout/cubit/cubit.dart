@@ -112,18 +112,6 @@ class NewsCubit extends Cubit<NewsState> {
     });
   }
 
-  bool isDark = false;
-  void changeTheme({
-    bool? fromShared,
-  }) {
-    if (fromShared != null) {
-      isDark = fromShared;
-      emit(ChangeThemState());
-    } else {
-      isDark = !isDark;
-      CacheHelper.putBoolean(value: isDark, key: 'isDark').then((value) {
-        emit(ChangeThemState());
-      });
-    }
+
   }
-}
+

@@ -11,7 +11,7 @@ class SearchScrren extends StatelessWidget {
       listener: (BuildContext context, state) {},
       builder: (BuildContext context, state) {
         var list = NewsCubit.get(context).search;
-        TextEditingController input = TextEditingController();
+        TextEditingController searchController = TextEditingController();
         return Scaffold(
           appBar: AppBar(),
           body: Column(
@@ -19,8 +19,9 @@ class SearchScrren extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: TextFormField(
-                  controller: input,
+                  controller: searchController,
                   onChanged: (value) {
+                    searchController.text = value;
                     print(value);
                     NewsCubit.get(context).getSearch(value);
                   },
@@ -30,7 +31,7 @@ class SearchScrren extends StatelessWidget {
                     prefixIcon: Icon(Icons.search),
                   ),
                   keyboardType: TextInputType.text,
-                  validator: (value) {
+                  validator: (dynamic value) {
                     if (value == null || value.isEmpty) {
                       return "Can not Be Empty";
                     }
