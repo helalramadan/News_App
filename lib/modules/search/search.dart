@@ -15,6 +15,7 @@ class SearchScrren extends StatelessWidget {
       builder: (BuildContext context, state) {
         var list = NewsCubit.get(context).search;
         TextEditingController searchController = TextEditingController();
+        var isSearch=true;
         return Scaffold(
           appBar: AppBar(),
           body: Column(
@@ -42,7 +43,18 @@ class SearchScrren extends StatelessWidget {
                   },
                 ),
               ),
-              Expanded(child: ArticleBuilder(list, context)),
+              Expanded(child: ConditionalBuilder(
+                condition: list.length>0,
+                builder: (context) => ListView.separated(
+                  // physics: BouncingScrollPhysics(),
+                  itemBuilder: (context, index) => BuildArticalItem(list[index], context),
+                  separatorBuilder: (context, index) => Container(
+                      height: 1.0, width: double.infinity, color: Colors.grey[200]),
+                  itemCount: list.length,
+                ),
+                fallback: (context) =>
+                isSearch? Container() :const  Center(child: CircularProgressIndicator()),
+              ),),
             ],
           ),
         );
