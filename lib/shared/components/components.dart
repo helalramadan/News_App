@@ -12,7 +12,7 @@ Widget BuildArticalItem(artical, context) => InkWell(
     Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => WebView(artical['url']),
+          builder: (context) =>  WebViewScreen(url: artical['url'] ),
         ));
   },
   child:   Padding(

@@ -4,7 +4,7 @@ import '../../shared/networke/local/cache_helper.dart';
 import 'statetheme.dart';
 
 class ThemeCubit extends Cubit<ThemeState> {
-  ThemeCubit() : super(ChangeThemState());
+  ThemeCubit() : super(ChangeThemeState ());
   static ThemeCubit get(context) => BlocProvider.of(context);
 
   bool isDark = false;
@@ -13,11 +13,11 @@ class ThemeCubit extends Cubit<ThemeState> {
   }) {
     if (fromShared != null) {
       isDark = fromShared;
-      emit(ChangeThemState());
+      emit(ChangeThemeState());
     } else {
       isDark = !isDark;
       CacheHelper.putBoolean(value: isDark, key: 'isDark').then((value) {
-        emit(ChangeThemState());
+        emit(ChangeThemeState());
       });
     }
   }

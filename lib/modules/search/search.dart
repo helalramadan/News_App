@@ -25,9 +25,9 @@ class SearchScrren extends StatelessWidget {
                 child: TextFormField(
                   controller: searchController,
                   onChanged: (value) {
-                    searchController.text = value;
-                    print(value);
+
                     NewsCubit.get(context).getSearch(value);
+                    print(value);
                   },
                   decoration: const InputDecoration(
                     label: Text('Search'),
@@ -35,8 +35,8 @@ class SearchScrren extends StatelessWidget {
                     prefixIcon: Icon(Icons.search),
                   ),
                   keyboardType: TextInputType.text,
-                  validator: (dynamic value) {
-                    if (value == null || value.isEmpty) {
+                  validator: (value) {
+                    if ( value!.isEmpty) {
                       return "Can not Be Empty";
                     }
                     return null;
@@ -46,7 +46,7 @@ class SearchScrren extends StatelessWidget {
               Expanded(child: ConditionalBuilder(
                 condition: list.length>0,
                 builder: (context) => ListView.separated(
-                  // physics: BouncingScrollPhysics(),
+                  physics: BouncingScrollPhysics(),
                   itemBuilder: (context, index) => BuildArticalItem(list[index], context),
                   separatorBuilder: (context, index) => Container(
                       height: 1.0, width: double.infinity, color: Colors.grey[200]),

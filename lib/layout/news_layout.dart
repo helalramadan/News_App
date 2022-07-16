@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -29,10 +31,11 @@ class News_Layout extends StatelessWidget {
                   },
                   icon: const Icon(Icons.search)),
               IconButton(
+              icon: const Icon(Icons.brightness_4_outlined),
                   onPressed: () {
                     ThemeCubit.get(context).changeAppMode();
                   },
-                  icon: const Icon(Icons.brightness_4_outlined)),
+                  ),
             ],
           ),
           body: cubit.screen[cubit.currentindex],

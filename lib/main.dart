@@ -1,4 +1,6 @@
 
+// ignore_for_file: use_key_in_widget_constructors, deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -50,7 +52,7 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
-              //primarySwatch: Colors.deepOrange,
+
               primarySwatch: Colors.deepOrange,
               scaffoldBackgroundColor: Colors.white,
               appBarTheme:  const AppBarTheme(
@@ -70,7 +72,7 @@ class MyApp extends StatelessWidget {
                   color: Colors.black,
                 ),
               ),
-              floatingActionButtonTheme: FloatingActionButtonThemeData(
+              floatingActionButtonTheme: const FloatingActionButtonThemeData(
                 backgroundColor: Colors.deepOrange,
               ),
               bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -80,7 +82,7 @@ class MyApp extends StatelessWidget {
                 elevation: 20.0,
                 backgroundColor: Colors.white,
               ),
-              textTheme: TextTheme(
+              textTheme: const TextTheme(
                 bodyText1: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
@@ -107,7 +109,7 @@ class MyApp extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              floatingActionButtonTheme: FloatingActionButtonThemeData(
+              floatingActionButtonTheme: const FloatingActionButtonThemeData(
                 backgroundColor: Colors.deepOrange,
               ),
               bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -117,19 +119,19 @@ class MyApp extends StatelessWidget {
                 elevation: 20.0,
                 backgroundColor: Color(0xFF333739),
               ),
-              textTheme: TextTheme(
+              textTheme: const TextTheme(
                 bodyText1: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w600,
                   color: Colors.white,
                 ),
               ),
-              scaffoldBackgroundColor: Color(0xFF333739),
+              scaffoldBackgroundColor: const Color(0xFF333739),
             ),
             themeMode: ThemeCubit.get(context).isDark
                 ? ThemeMode.dark
                 : ThemeMode.light,
-            home:  Directionality(
+            home:  const Directionality(
                 textDirection: TextDirection.ltr, child: News_Layout()),
           );
         },
