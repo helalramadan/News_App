@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 import '../cubit/cubit.dart';
 import '../cubit/cubittheme.dart';
 import '../cubit/stats.dart';
@@ -30,12 +29,12 @@ class News_Layout extends StatelessWidget {
                             builder: (context) => SearchScrren()));
                   },
                   icon: const Icon(Icons.search)),
-              IconButton(
-              icon: const Icon(Icons.brightness_4_outlined),
-                  onPressed: () {
-                    ThemeCubit.get(context).changeAppMode();
-                  },
-                  ),
+              // IconButton(
+              // icon: const Icon(Icons.brightness_4_outlined),
+              //     onPressed: () {
+              //       ThemeCubit.get(context).changeAppMode();
+              //     },
+              //     ),
             ],
           ),
           body: cubit.screen[cubit.currentindex],

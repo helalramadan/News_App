@@ -39,8 +39,7 @@ class NewsCubit extends Cubit<NewsState> {
   List<dynamic> business = [];
   void getBusiness() {
     emit(BusinessLoadingState());
-if(business.isEmpty){
-
+    if (business.isEmpty) {
       DioHelper.getData(url: 'v2/top-headlines', query: {
         "country": "eg",
         "category": "business",
@@ -53,15 +52,15 @@ if(business.isEmpty){
         print(error.toString());
         emit(BusinessGetDataErrorState(error.toString()));
       });
-}else{
-  emit(BusinessGetDataSuccessState());
-}
-      }
+    } else {
+      emit(BusinessGetDataSuccessState());
+    }
+  }
 
   List<dynamic> sports = [];
   void getSports() {
     emit(SportsLoadingState());
-    if (sports.length==0) {
+    if (sports.length == 0) {
       DioHelper.getData(url: 'v2/top-headlines', query: {
         "country": "eg",
         "category": "sports",
@@ -82,7 +81,7 @@ if(business.isEmpty){
   List<dynamic> science = [];
   void getScience() {
     emit(ScienceLoadingState());
-    if (science.length==0) {
+    if (science.length == 0) {
       DioHelper.getData(url: 'v2/top-headlines', query: {
         "country": "eg",
         "category": "science",
@@ -116,7 +115,4 @@ if(business.isEmpty){
       emit(SearchGetDataErrorState(error.toString()));
     });
   }
-
-
-  }
-
+}
