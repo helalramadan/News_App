@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../cubit/cubit.dart';
-import '../cubit/cubittheme.dart';
 import '../cubit/stats.dart';
 import '../modules/search/search.dart';
 
@@ -28,7 +27,7 @@ class News_Layout extends StatelessWidget {
                         MaterialPageRoute(
                             builder: (context) => SearchScrren()));
                   },
-                  icon: const Icon(Icons.search)),
+                  icon: Icon(Icons.search)),
               // IconButton(
               // icon: const Icon(Icons.brightness_4_outlined),
               //     onPressed: () {

@@ -2,10 +2,10 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 import '../../cubit/cubit.dart';
 import '../../cubit/stats.dart';
 import '../../shared/components/components.dart';
+
 class SearchScrren extends StatelessWidget {
   const SearchScrren({Key? key}) : super(key: key);
   @override
@@ -15,17 +15,16 @@ class SearchScrren extends StatelessWidget {
       builder: (BuildContext context, state) {
         var list = NewsCubit.get(context).search;
         TextEditingController searchController = TextEditingController();
-        var isSearch=true;
+        var isSearch = true;
         return Scaffold(
           appBar: AppBar(),
           body: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.all(15.0),
+                padding: const EdgeInsets.all(20.0),
                 child: TextFormField(
                   controller: searchController,
                   onChanged: (value) {
-
                     NewsCubit.get(context).getSearch(value);
                     print(value);
                   },
@@ -36,25 +35,31 @@ class SearchScrren extends StatelessWidget {
                   ),
                   keyboardType: TextInputType.text,
                   validator: (value) {
-                    if ( value!.isEmpty) {
+                    if (value!.isEmpty) {
                       return "Can not Be Empty";
                     }
                     return null;
                   },
                 ),
               ),
-              Expanded(child: ConditionalBuilder(
-                condition: list.length>0,
-                builder: (context) => ListView.separated(
-                  physics: BouncingScrollPhysics(),
-                  itemBuilder: (context, index) => BuildArticalItem(list[index], context),
-                  separatorBuilder: (context, index) => Container(
-                      height: 1.0, width: double.infinity, color: Colors.grey[200]),
-                  itemCount: list.length,
+              Expanded(
+                child: ConditionalBuilder(
+                  condition: list.isNotEmpty,
+                  builder: (context) => ListView.separated(
+                    physics: const BouncingScrollPhysics(),
+                    itemBuilder: (context, index) =>
+                        BuildArticalItem(list[index], context),
+                    separatorBuilder: (context, index) => Container(
+                        height: 1.0,
+                        width: double.infinity,
+                        color: Colors.grey[200]),
+                    itemCount: list.length,
+                  ),
+                  fallback: (context) => isSearch
+                      ? Container()
+                      : const Center(child: CircularProgressIndicator()),
                 ),
-                fallback: (context) =>
-                isSearch? Container() :const  Center(child: CircularProgressIndicator()),
-              ),),
+              ),
             ],
           ),
         );
